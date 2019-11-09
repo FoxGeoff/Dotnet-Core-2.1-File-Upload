@@ -15,18 +15,27 @@ export class AppComponent implements OnInit {
   public user: UserToCreate;
   public users: User[] = [];
 
+  public response: {dbPath: ''};
 
   constructor(private http: HttpClient){}
 
   ngOnInit(){
     this.isCreate = true;
   }
+ 
+  public createImgPath = (serverPath: string) => {
+    return `https://localhost:5001/${serverPath}`;
+  }
 
+  public uploadFinished = (event) => {
+    this.response = event;
+  }
+  
   public onCreate = () => {
     this.user = {
       name: this.name,
       address: this.address,
-      imgPath: ''
+      imgPath: this.response.dbPath
     }
 
     this.http.post('https://localhost:5001/api/users', this.user)
