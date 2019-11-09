@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   ngOnInit(){
     this.isCreate = true;
   }
- 
+   
   public createImgPath = (serverPath: string) => {
     return `https://localhost:5001/${serverPath}`;
   }
